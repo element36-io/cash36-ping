@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ERC20 Ping-Pong</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+    <style > 
+      button {width:100px;margin:3px;}
+    </style>
+  </head>
+  <body>
+    <h1 >Ping-Pong with Fiat on ethereum</h1>
+    <h3 >All transactions work within a KYC-ed environment at all times!</h3>
+    <p>Basic template for a Dapp, how to integrate CHF (Swiss Francs) into Smart Contracts. 
+      This contracts sends funds from a Person to a contract which can be retrieved later by a defined Person. 
+      The wallets must be part of the KYCnetwork.io - transactions and wallets are monitored - its only works, 
+      as long participating persons are fully KYC-ed. 
+    </p>
+    <br/>
+    <br/>
+    
+    <button type="button" class="btn-ping" >PING</button>Send  <input name="amount" id="amount"  value="1" style="width:30px;"> CHF36 to the Contract for the beneficiary <br/>
+    <button type="button" class="btn-pong" >PONG</button>Beneficiary withdraws funds from the contract <br/>
+    <br/>
+    <br/>
+    <h2>State of smart contracts  </h2>
+
+    Wallet-address (e.g. from Metamask): <span id="account">...checking</span>, balance <span id="balanceEth">...checking</span> <br/> 
+    <span id="balance36">...checking</span> <br/>
+    <br/>
+    Beneficiary wallet address: <input name="beneficiary" id="beneficiary"  value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e" style="width:400px";> <br/>
+    <span id="beneficiaryBalance36">...checking</span> <br/>
+    <br/>
+    Contract: <span id="contractBalance36">...checking</span> <br/>
+
+    <br>   
+    <button type="button" class="btn-refresh"  >refresh</button> Refresh state information
+    <br/>
+    <br/>
+    <button type="button" class="btn-withdraw" >withdraw</button>Try to steal tokens - its not possible with an anonymous wallet.<br/>
+ 
+  </body>
+</html>

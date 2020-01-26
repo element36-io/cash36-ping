@@ -1,0 +1,39 @@
+{
+    "name": "@element36-io/cash36-ping",
+    "version": "0.1.1",
+    "description": "Contains a ping contract wich sends back ERC20 funds with an open API call",
+    "homepage": "http://element36.io",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "w@element36.io"
+        }
+    ],
+    "main": "truffle.js",
+    "directories": {
+        "test": "test"
+    },
+    "author": {
+        "name": "w@element36.io"
+    },
+    "dependencies": {
+        "@element36-io/cash36-contracts": "0.3.22",
+        "@truffle/contract": "4.1.5"
+    },
+    "devDependencies": {
+        "@babel/polyfill": "7.7.0",
+        "@openzeppelin/test-helpers": "0.5.4",
+        "@truffle/hdwallet-provider": "1.0.28",
+        "ganache-cli": "6.8.1",
+        "solidity-coverage": "0.7.1",
+        "lite-server": "^2.3.0"
+    },
+    "files": [
+        "build/contracts/",
+        "index.js"
+    ],
+    "scripts": {
+        "dev": "lite-server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}
