@@ -1,9 +1,8 @@
 To try this example locally, do: 
-`
-truffle build
-truffle migrate
-npm run dev
-`
+
+`truffle build`
+`truffle migrate`
+`npm run dev`
 If you are new to ethererum development, check out: https://www.trufflesuite.com/tutorials/pet-shop 
 
 
