@@ -56,13 +56,6 @@ App = {
       App.contracts.chf36.deployed().then(() =>
         console.log(" > App.contracts.chf36.address:" + App.contracts.chf36.address))
     });
-    $.getJSON("@element36-io/cash36-contracts/build/contracts/EUR36.json", function (data) {
-      App.contracts.eur36 = TruffleContract(data);
-      // Set the provider for our contract
-      App.contracts.eur36.setProvider(App.web3Provider);
-      App.contracts.eur36.deployed().then(() =>
-        console.log(" > App.contracts.eur36.address:" + App.contracts.eur36.address))
-    });
     $.getJSON("@element36-io/cash36-contracts/build/contracts/Cash36Compliance.json", function (data) {
       App.contracts.compliance = TruffleContract(data);
       // Set the provider for our contract
