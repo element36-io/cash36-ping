@@ -73,6 +73,7 @@ App = {
     $(document).on('click', '.btn-pong', App.handlePong);
     $(document).on('click', '.btn-refresh', App.updateUserData);
     $(document).on('click', '.btn-withdraw', App.handleWithdraw);
+    $(document).on('click', '.btn-reveal', App.handleRevealData);
   },
 
  
@@ -128,6 +129,10 @@ App = {
     await pingInstance.steal({ from: App.account })
     App.updateUserData()
   },
+  handleRevealData: async function (event) {
+    alert("buh!");
+    // use Kyc.js?
+  },
   updateUserData: async function () {
 
     $("#account")[0].innerHTML = "..."
@@ -160,14 +165,11 @@ App = {
     $('#contractBalance36')[0].innerHTML = App.parse(cBalanceChf36) + " CHF36, beneficiary: " + cBeneficiary + ", contract: " + App.contracts.chf36.address;
 
   },
-
   getUserStatus: async function (address) {
     let result = {};
     result["address"] = address;
     chf36 = await App.contracts.chf36.deployed();
     result["balanceChf36"] = App.parse(await chf36.balanceOf(address));
-    eur36 = await App.contracts.eur36.deployed();
-    result["balanceEur36"] = App.parse(await eur36.balanceOf(address));
     compliance = await App.contracts.compliance.deployed();
 
     result["ATTR_BUY"] = await compliance.hasAttribute(address, "ATTR_BUY");
@@ -181,7 +183,7 @@ App = {
     result["isOnLockedAccounts"] = await compliance.isOnLockedAccounts(address);
 
     result["limgetUserLimitit"] = await compliance.getUserLimit(address);
-    result["checkUserLimit"] = await compliance.checkUserLimit(address, App.format(App.getAmount()), result["balanceEur36"]);
+    result["checkUserLimit"] = await compliance.checkUserLimit(address, App.format(App.getAmount()), result["balanceChf36"]);
     result["checkUser"] = await compliance.checkUser(address);
     console.log(" " + address + ": " + JSON.stringify(result));
     return result;

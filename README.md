@@ -2,7 +2,7 @@ To try this example locally, do:
 
 ```
 truffle build
-truffle migrate
+npm truffle migrate
 npm run dev
 ```
 

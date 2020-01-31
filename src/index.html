@@ -9,7 +9,9 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/dapp.js"></script>
+    <script src="js/kyc.js"></script>
+    
     <style > 
       button {width:100px;margin:3px;}
     </style>
@@ -34,7 +36,8 @@
     Wallet-address (e.g. from Metamask): <span id="account">...checking</span>, balance <span id="balanceEth">...checking</span> <br/> 
     <span id="balance36">...checking</span> <br/>
     <br/>
-    Beneficiary wallet address: <input name="beneficiary" id="beneficiary"  value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e" style="width:400px";> <br/>
+    Beneficiary wallet address: <input name="beneficiary" id="beneficiary"  value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e" style="width:400px"> <br/>
+
     <span id="beneficiaryBalance36">...checking</span> <br/>
     <br/>
     Contract: <span id="contractBalance36">...checking</span> <br/>
@@ -43,7 +46,15 @@
     <button type="button" class="btn-refresh"  >refresh</button> Refresh state information
     <br/>
     <br/>
-    <button type="button" class="btn-withdraw" >withdraw</button>Try to steal tokens - its not possible with an anonymous wallet.<br/>
- 
+  
+
+    <h2>API call to reveal user info</h2> 
+    Your e36 (and API) user/pwd <input name="APIId" id="APIId"  value="" style="width:300px">/<input name="APIPwd" id="APIPwd"  value="" style="width:200px"> 
+    <br/>
+    The clue: <input name="clue" id="clue"  value="" style="width:200px"> Beneficiary address or transaction hash in case of wallet-free submission
+    <br/>
+    <button type="button" class="btn-reveal" >reveal data</button>After receiving a payment, you are able to reveal identitiy (customer) data.<br/>
+    <span id="reveal">...</span> <br/>
+
   </body>
 </html>
