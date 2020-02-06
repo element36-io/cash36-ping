@@ -191,7 +191,8 @@ App = {
   updateUserData: async function() {
     $('#account')[0].innerHTML = '...';
     $('#balanceEth')[0].innerHTML = '...';
-    $('#balance36')[0].innerHTML = '...';
+    // $('#balance36')[0].innerHTML = '...';
+    $('#chf36balance')[0].innerHTML = '...';
     $('#beneficiaryBalance36')[0].innerHTML = '...';
     $('#contractBalance36')[0].innerHTML = '...';
 
@@ -209,9 +210,14 @@ App = {
       if (err) $('#balanceEth')[0].innerHTML = err;
     });
 
-    $('#balance36')[0].innerHTML = JSON.stringify(
-      await App.getUserStatus(App.account)
-    );
+    // $('#balance36')[0].innerHTML = JSON.stringify(
+    //   await App.getUserStatus(App.account)
+    // );
+
+    // get user status, peel of what you need from there (balance, contract, status, limits)
+    const userStatus = await App.getUserStatus(App.account);
+
+    $('#chf36balance')[0].innerHTML = userStatus.balanceChf36;
 
     $('#beneficiaryBalance36')[0].innerHTML = JSON.stringify(
       await App.getUserStatus(App.getBeneficiary())
