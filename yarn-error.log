@@ -1,0 +1,74 @@
+Arguments: 
+  /Users/milosdzeletovic/.nvm/versions/node/v12.9.1/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js
+
+PATH: 
+  /usr/local/sbin:/Users/milosdzeletovic/.nvm/versions/node/v12.9.1/bin:/Users/milosdzeletovic/dev_utilities/flutter/bin:/usr/local/opt/node@10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/Users/milosdzeletovic/dev_utilities/flutter/bin:/usr/local/opt/node@10/bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  12.9.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://npm.pkg.github.com/@element36-io%2fcash36-contracts: Your request could not be authenticated by the GitHub Packages service. Please ensure your access token is valid and has the appropriate scopes configured.
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66830:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140464:22)
+      at Request.emit (events.js:209:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141436:10)
+      at Request.emit (events.js:209:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141358:12)
+      at Object.onceWrapper (events.js:297:20)
+      at IncomingMessage.emit (events.js:214:15)
+      at endReadableNT (_stream_readable.js:1178:12)
+      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+
+npm manifest: 
+  {
+      "name": "@element36-io/cash36-ping",
+      "version": "0.1.1",
+      "description": "Contains a ping contract wich sends back ERC20 funds with an open API call",
+      "homepage": "http://element36.io",
+      "license": "MIT",
+      "contributors": [
+          {
+              "name": "w@element36.io"
+          }
+      ],
+      "main": "truffle.js",
+      "directories": {
+          "test": "test"
+      },
+      "author": {
+          "name": "w@element36.io"
+      },
+      "dependencies": {
+          "@element36-io/cash36-contracts": "0.3.22",
+          "@truffle/contract": "4.1.5"
+      },
+      "devDependencies": {
+          "@babel/polyfill": "7.7.0",
+          "@openzeppelin/test-helpers": "0.5.4",
+          "@truffle/hdwallet-provider": "1.0.28",
+          "ganache-cli": "6.8.1",
+          "solidity-coverage": "0.7.1",
+          "lite-server": "^2.3.0"
+      },
+      "files": [
+          "build/contracts/",
+          "index.js"
+      ],
+      "scripts": {
+          "dev": "lite-server",
+          "test": "echo \"Error: no test specified\" && exit 1"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

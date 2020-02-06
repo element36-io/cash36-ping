@@ -25,8 +25,9 @@
         "@openzeppelin/test-helpers": "0.5.4",
         "@truffle/hdwallet-provider": "1.0.28",
         "ganache-cli": "6.8.1",
-        "solidity-coverage": "0.7.1",
-        "lite-server": "^2.3.0"
+        "lite-server": "^2.3.0",
+        "prettier": "^1.19.1",
+        "solidity-coverage": "0.7.1"
     },
     "files": [
         "build/contracts/",
