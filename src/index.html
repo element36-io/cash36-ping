@@ -57,7 +57,13 @@
           </button>
         </div>
       </section>
-      <h2>State of smart contracts</h2>
+      <div class="smart-contracts__header">
+        <h2>State of smart contracts</h2>
+        <button type="button" class="btn-refresh button button-full">
+          Refresh contracts
+        </button>
+      </div>
+
       <section class="smart-contracts">
         <div class="smart-contracts__contract paper">
           <h3>Wallet-address (e.g. from Metamask):</h3>
@@ -77,8 +83,24 @@
           </div>
 
           <div class="smart-contracts__field">
-            <div class="smart-contracts__field__label">CHF 36 Balance</div>
+            <div class="smart-contracts__field__label">CHF36 Balance</div>
             <div id="chf36balance" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Is sender KYC-ed?</div>
+            <div id="senderKycd" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is sender allowed to Send funds?
+            </div>
+            <div id="allowedSend" class="smart-contracts__field__value">
               ...checking
             </div>
           </div>
@@ -91,19 +113,64 @@
             class="input"
             value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e"
           />
-          <span id="beneficiaryBalance36">...checking</span>
-          Contract: <span id="contractBalance36">...checking</span>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary KYC-ed?
+            </div>
+            <div id="beneficiaryKycd" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary allowed to Buy funds?
+            </div>
+            <div id="allowedBuy" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary allowed to Receive funds?
+            </div>
+            <div id="allowedReceive" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+        </div>
+        <div class="smart-contracts__contract paper">
+          <h3>CHF36 Contract status</h3>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Contract Address</div>
+            <div
+              id="chf36__contractAddress"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">CHF36 Balance</div>
+            <div
+              id="chf36balance__contract"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
         </div>
       </section>
 
-      <button type="button" class="btn-refresh button button-full">
-        refresh
-      </button>
-      Refresh state information
-
-      <button type="button" class="btn-withdraw button button-full">
-        withdraw</button
-      >Try to steal tokens - its not possible with an anonymous wallet.
+      <section class="withdraw">
+        <div class="withdraw__content paper">
+          <p>
+            Try to steal tokens - its not possible with an anonymous wallet.
+          </p>
+          <button type="button" class="btn-withdraw button button-full">
+            withdraw
+          </button>
+        </div>
+      </section>
     </div>
   </body>
   <script src="js/jquery.min.js"></script>

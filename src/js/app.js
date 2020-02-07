@@ -191,10 +191,14 @@ App = {
   updateUserData: async function() {
     $('#account')[0].innerHTML = '...';
     $('#balanceEth')[0].innerHTML = '...';
-    // $('#balance36')[0].innerHTML = '...';
     $('#chf36balance')[0].innerHTML = '...';
-    $('#beneficiaryBalance36')[0].innerHTML = '...';
-    $('#contractBalance36')[0].innerHTML = '...';
+    $('#senderKycd')[0].innerHTML = '...';
+    $('#allowedSend')[0].innerHTML = '...';
+    $('#beneficiaryKycd')[0].innerHTML = '...';
+    $('#allowedReceive')[0].innerHTML = '...';
+    $('#allowedBuy')[0].innerHTML = '...';
+    $('#chf36balance__contract')[0].innerHTML = '...';
+    $('#chf36__contractAddress')[0].innerHTML = '...';
 
     // MILOS... how can we call this after init? Could not figure out how
     // to do this without a break in case of a pageload - my javascript is too rusty
@@ -210,28 +214,50 @@ App = {
       if (err) $('#balanceEth')[0].innerHTML = err;
     });
 
-    // $('#balance36')[0].innerHTML = JSON.stringify(
-    //   await App.getUserStatus(App.account)
-    // );
-
     // get user status, peel of what you need from there (balance, contract, status, limits)
     const userStatus = await App.getUserStatus(App.account);
 
+    if (userStatus.checkUser) {
+      $('#senderKycd')[0].innerHTML = 'Yes';
+    } else {
+      $('#senderKycd')[0].innerHTML = 'No';
+    }
+
+    if (userStatus.ATTR_SEND) {
+      $('#allowedSend')[0].innerHTML = 'Yes';
+    } else {
+      $('#allowedSend')[0].innerHTML = 'No';
+    }
+
     $('#chf36balance')[0].innerHTML = userStatus.balanceChf36;
 
-    $('#beneficiaryBalance36')[0].innerHTML = JSON.stringify(
-      await App.getUserStatus(App.getBeneficiary())
-    );
+    const beneficiaryStatus = await App.getUserStatus(App.getBeneficiary());
+
+    console.log(beneficiaryStatus);
+
+    if (beneficiaryStatus.checkUser) {
+      $('#beneficiaryKycd')[0].innerHTML = 'Yes';
+    } else {
+      $('#beneficiaryKycd')[0].innerHTML = 'No';
+    }
+
+    if (beneficiaryStatus.ATTR_RECEIVE) {
+      $('#allowedReceive')[0].innerHTML = 'Yes';
+    } else {
+      $('#allowedReceive')[0].innerHTML = 'No';
+    }
+
+    if (beneficiaryStatus.ATTR_BUY) {
+      $('#allowedBuy')[0].innerHTML = 'Yes';
+    } else {
+      $('#allowedBuy')[0].innerHTML = 'No';
+    }
 
     const pingInstance = await App.contracts.Ping.deployed();
     const cBalanceChf36 = await chf36.balanceOf(pingInstance.address);
     const cBeneficiary = await pingInstance.beneficiary();
-    $('#contractBalance36')[0].innerHTML =
-      App.parse(cBalanceChf36) +
-      ' CHF36, beneficiary: ' +
-      cBeneficiary +
-      ', contract: ' +
-      App.contracts.chf36.address;
+    $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
+    $('#chf36__contractAddress')[0].innerHTML = App.contracts.chf36.address;
   },
 
   getUserStatus: async function(address) {
