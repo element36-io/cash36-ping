@@ -160,15 +160,48 @@
           </div>
         </div>
       </section>
+      <h2>API call to reveal user info</h2>
+      <section class="reveal-user-info">
+        <div class="reveal-user-info__creds paper">
+          <h3>Your element36 (and API) Username and Password</h3>
+          <div class="reveal-user-info__creds__inputs">
+            <input
+              class="input"
+              placeholder="Element36 Username"
+              name="APIId"
+              id="APIId"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Element36 Password"
+              name="APIPwd"
+              id="APIPwd"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Clue*"
+              name="clue"
+              id="clue"
+              value=""
+            />
+            <span class="reveal-user-info__clue-explain">
+              * Clue can be beneficiary address or transaction hash in case of a
+              wallet-free submission
+            </span>
+            <button type="button" class="btn-reveal button button-full">
+              reveal data
+            </button>
+          </div>
+        </div>
 
-      <section class="withdraw">
-        <div class="withdraw__content paper">
-          <p>
-            Try to steal tokens - its not possible with an anonymous wallet.
-          </p>
-          <button type="button" class="btn-withdraw button button-full">
-            withdraw
-          </button>
+        <div class="reveal-user-info__data">
+          <span id="reveal">
+            After receiving a payment, you are able to reveal identitiy
+            (customer) data...</span
+          >
+          <br />
         </div>
       </section>
     </div>
@@ -176,5 +209,6 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/web3.min.js"></script>
   <script src="js/truffle-contract.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/dapp.js"></script>
+  <script src="js/kyc.js"></script>
 </html>

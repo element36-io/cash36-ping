@@ -208,12 +208,12 @@ h3 {
 .smart-contracts__contract {
   /* flex: 1; */
   padding: 16px;
-  width: 47%;
+  width: 49%;
   margin-bottom: 16px;
 }
 
 .smart-contracts__contract:first-child {
-  margin-right: 24px;
+  margin-right: 16px;
 }
 
 .smart-contracts__contract > input {
@@ -231,21 +231,34 @@ h3 {
   color: var(--textGray);
 }
 
-/* WITHDRAW */
+/* REVEAL-USER-INFO */
 
-.withdraw {
+.reveal-user-info {
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
 }
 
-.withdraw__content {
-  padding: 16px;
+.reveal-user-info__creds {
   display: inline-flex;
   flex-direction: column;
-
-  justify-content: center;
+  padding: 16px;
+  margin-right: 24px;
 }
 
-.withdraw__content > p {
-  margin-bottom: 14px;
+.reveal-user-info__creds__inputs > button {
+  margin-top: 8px;
+}
+
+.reveal-user-info__creds__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.reveal-user-info__creds__inputs > input {
+  margin-bottom: 8px;
+}
+
+.reveal-user-info__clue-explain {
+  color: var(--textGray);
+  font-size: 12px;
 }
