@@ -233,8 +233,6 @@ App = {
 
     const beneficiaryStatus = await App.getUserStatus(App.getBeneficiary());
 
-    console.log(beneficiaryStatus);
-
     if (beneficiaryStatus.checkUser) {
       $('#beneficiaryKycd')[0].innerHTML = 'Yes';
     } else {
@@ -258,6 +256,12 @@ App = {
     const cBeneficiary = await pingInstance.beneficiary();
     $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
     $('#chf36__contractAddress')[0].innerHTML = App.contracts.chf36.address;
+
+    $('#reveal')[0].innerHTML = 'REVEALED DATA HERE';
+
+    $('#btn-reveal').on('click', () => {
+      Kyc.revealData('miloshdz@gmail.com', 'Marijana13@');
+    });
   },
 
   getUserStatus: async function(address) {

@@ -6,7 +6,7 @@ Kyc = {
     return $('#APIPwd')[0].value;
   },
   getClue: function() {
-    return 'abc';
+    return $('#clue')[0].value;
   },
   getBaseUrl: function() {
     return 'http://localhost:8089';
@@ -15,9 +15,27 @@ Kyc = {
   init: async function() {
     console.log('init kyc');
   },
+  revealData: async function(username, password) {
+    try {
+      // check if user exists
+      const response = await fetch(`http://localhost:8090/auth/oauth/token`, {
+        body: `username=${username}&password=${password}&grant_type=password`,
+        headers: {
+          Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
 
-  login: async function() {}
-  // kyc-controller
+      console.log(response);
+      // if it doesn't, return error
+
+      // if it exists, log the user in and return the token
+
+      // use the token to reveal data calling /reveal/{clue}
+    } catch (err) {
+      console.log(err);
+    }
+  }
   // Kyc Controller
 
   // GET
