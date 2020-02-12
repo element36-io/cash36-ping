@@ -242,6 +242,7 @@ h3 {
   flex-direction: column;
   padding: 16px;
   margin-right: 24px;
+  width: 49%;
 }
 
 .reveal-user-info__creds__inputs > button {
@@ -260,4 +261,15 @@ h3 {
 .reveal-user-info__clue-explain {
   color: var(--textGray);
   font-size: 12px;
+}
+
+.reveal-user-info__data {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reveal-data {
+  display: flex;
+  flex-direction: column;
 }

@@ -15,34 +15,60 @@ Kyc = {
   init: async function() {
     console.log('init kyc');
   },
-  revealData: async function(username, password) {
+  revealData: async function(username, password, clue) {
     // check if user exists
-    const config = {
-      data: `username=${username}&password=${password}&grant_type=password`,
-      headers: {
-        Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    };
+    let accessToken;
 
     try {
-      const response = await axios.post(
-        `http://localhost:8090/auth/oauth/token`,
-        config.data,
+      const config = {
+        body: `username=${username}&password=${password}&grant_type=password`,
+        headers: {
+          Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+
+      const response = await fetch(
+        `http://localhost:8090/cash36/auth/oauth/token`,
         {
+          method: 'POST',
+          body: config.body,
           headers: config.headers
         }
       );
-      console.log(response);
+      const data = await response.json();
+      accessToken = data.access_token;
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
-    // if it doesn't, return error
+    if (!accessToken)
+      return {
+        error: 'You have no access rights to this resource'
+      };
 
-    // if it exists, log the user in and return the token
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      };
 
-    // use the token to reveal data calling /reveal/{clue}
+      const response = await fetch(
+        `http://localhost:8090/cash36/compliance/kyc/reveal/${clue}`,
+        {
+          method: 'GET',
+          headers: config.headers
+        }
+      );
+
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      return {
+        error: err.error
+      };
+    }
   }
   // Kyc Controller
 

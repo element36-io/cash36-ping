@@ -257,11 +257,40 @@ App = {
     $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
     $('#chf36__contractAddress')[0].innerHTML = App.contracts.chf36.address;
 
-    $('#reveal')[0].innerHTML = 'REVEALED DATA HERE';
-
-    $('#btn-reveal').on('click', () => {
+    $('#btn-reveal').on('click', async () => {
       // `Message for Walter` Enter your credentials here
-      Kyc.revealData('', '');
+      const username = Kyc.getAPIUserId();
+      const password = Kyc.getAPIPassword();
+      const clue = Kyc.getClue();
+
+      console.log(username, password, clue);
+
+      const data = await Kyc.revealData(username, password, clue);
+
+      if (data.error) {
+        $('#reveal')[0].innerHTML = `<div>&#9888; ${data.error}</div>`;
+        return;
+      }
+
+      console.log(data);
+      $('#reveal')[0].innerHTML = `
+      <div class="reveal__data">
+        <div class="smart-contracts__field__label">Username</div>
+        <div
+          class="smart-contracts__field__value"
+        >
+          ${data.username}
+        </div>
+      </div>
+      <div class="reveal__data">
+      <div class="smart-contracts__field__label">Name</div>
+      <div
+        class="smart-contracts__field__value"
+      >
+        ${data.firstName} ${data.lastName}
+      </div>
+    </div>
+      `;
     });
   },
 
