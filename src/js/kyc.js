@@ -16,14 +16,19 @@ Kyc = {
     console.log('init kyc');
   },
   revealData: async function(username, password) {
+    var headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0'
+    });
+
     try {
       // check if user exists
       const response = await fetch(`http://localhost:8090/auth/oauth/token`, {
-        body: `username=${username}&password=${password}&grant_type=password`,
-        headers: {
-          Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        method: 'POST',
+        body: {
+          data: `username=${username}&password=${password}&grant_type=password`
+        },
+        headers
       });
 
       console.log(response);
