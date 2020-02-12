@@ -16,30 +16,33 @@ Kyc = {
     console.log('init kyc');
   },
   revealData: async function(username, password) {
-    var headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0'
-    });
+    // check if user exists
+    const config = {
+      data: `username=${username}&password=${password}&grant_type=password`,
+      headers: {
+        Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
 
     try {
-      // check if user exists
-      const response = await fetch(`http://localhost:8090/auth/oauth/token`, {
-        method: 'POST',
-        body: {
-          data: `username=${username}&password=${password}&grant_type=password`
-        },
-        headers
-      });
-
+      const response = await axios.post(
+        `http://localhost:8090/auth/oauth/token`,
+        config.data,
+        {
+          headers: config.headers
+        }
+      );
       console.log(response);
-      // if it doesn't, return error
-
-      // if it exists, log the user in and return the token
-
-      // use the token to reveal data calling /reveal/{clue}
     } catch (err) {
       console.log(err);
     }
+
+    // if it doesn't, return error
+
+    // if it exists, log the user in and return the token
+
+    // use the token to reveal data calling /reveal/{clue}
   }
   // Kyc Controller
 

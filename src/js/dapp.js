@@ -260,7 +260,8 @@ App = {
     $('#reveal')[0].innerHTML = 'REVEALED DATA HERE';
 
     $('#btn-reveal').on('click', () => {
-      Kyc.revealData('miloshdz@gmail.com', 'Marijana13@');
+      // `Message for Walter` Enter your credentials here
+      Kyc.revealData('', '');
     });
   },
 
