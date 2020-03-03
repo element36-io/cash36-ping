@@ -27,6 +27,7 @@ App = {
     // Modern dapp browsers...
     if (window.ethereum) {
       console.log('.. Metamask or similar provides web3 ');
+
       App.web3Provider = window.ethereum;
       try {
         // Request account access - opens MetaMask
@@ -49,6 +50,7 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider(
         $('#providerUrl')[0].value
       );
+
     }
     return App.initContract();
   },
@@ -117,6 +119,7 @@ App = {
   },
 
   bindEvents: function() {
+
     $(document).on('click', '.btn-ping', App.handlePing2);
     $(document).on('click', '.btn-pong', App.handlePong);
     $(document).on('click', '.btn-refresh', App.updateUserData);
@@ -128,6 +131,7 @@ App = {
   },
 
   handlePing: async function(event) {
+
     if (event) event.preventDefault();
 
     const pingInstance = await App.contracts.Ping.deployed();
@@ -153,11 +157,12 @@ App = {
     let pingInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
+
       if (error) {
         console.log(error);
       }
 
-      App.contracts.Ping.deployed()
+    App.contracts.Ping.deployed()
         .then(function(instance) {
           pingInstance = instance;
           // Execute adopt as a transaction by sending account
@@ -201,12 +206,14 @@ App = {
     $('#chf36__contractAddress')[0].innerHTML = '...';
 
     // MILOS... how can we call this after init? Could not figure out how
+
     // to do this without a break in case of a pageload - my javascript is too rusty
     await new Promise(r => setTimeout(r, 2000));
 
     //get eth
     web3 = new Web3(App.web3Provider);
     App.account = web3.eth.accounts[0];
+
     $('#account')[0].innerHTML = App.account;
 
     web3.eth.getBalance(App.account, (err, balance) => {
@@ -328,6 +335,7 @@ App = {
 }; //App
 $(function() {
   $(window).load(function() {
+
     App.init();
   });
 });

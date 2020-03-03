@@ -82,6 +82,7 @@ Kyc = {
 }; //Kyc
 $(function() {
   $(window).load(function() {
+
     Kyc.init();
   });
 });

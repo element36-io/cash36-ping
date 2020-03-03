@@ -17,7 +17,7 @@
         "name": "w@element36.io"
     },
     "dependencies": {
-        "@element36-io/cash36-contracts": "0.3.22",
+        "@element36-io/cash36-contracts": "0.3.28",
         "@truffle/contract": "4.1.5"
     },
     "devDependencies": {
