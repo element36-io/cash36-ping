@@ -170,6 +170,7 @@ h3 {
 
 .ping-pong {
   display: flex;
+  margin-bottom: 16px;
 }
 
 .ping-pong__section {
@@ -177,7 +178,6 @@ h3 {
   display: inline-flex;
   padding: 16px;
   flex-direction: column;
-  margin-bottom: 32px;
   max-width: 400px;
 }
 
@@ -208,7 +208,6 @@ h3 {
   /* flex: 1; */
   padding: 16px;
   width: 49%;
-  margin-bottom: 16px;
 }
 
 .smart-contracts__contract:first-child {
