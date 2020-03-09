@@ -20,7 +20,6 @@ Kyc = {
   getBaseUrl: function() {
     return 'http://localhost:8089';
   },
-
   init: async function() {
     console.log('init kyc');
   },
@@ -67,6 +66,63 @@ Kyc = {
         `http://localhost:8090/cash36/compliance/kyc/reveal/${clue}`,
         {
           method: 'GET',
+          headers: config.headers
+        }
+      );
+
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      return {
+        error: err.error
+      };
+    }
+  },
+  walletfreePing: async function(username, password, walletfreeData) {
+    // check if user exists
+    let accessToken;
+
+    try {
+      const config = {
+        body: `username=${username}&password=${password}&grant_type=password`,
+        headers: {
+          Authorization: 'Basic Y2FzaDM2LWNsaWVudDpjYXNoMzYtc2VjcmV0',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+
+      const response = await fetch(
+        `http://localhost:8090/cash36/auth/oauth/token`,
+        {
+          method: 'POST',
+          body: config.body,
+          headers: config.headers
+        }
+      );
+      const data = await response.json();
+      accessToken = data.access_token;
+    } catch (err) {
+      console.error(err);
+    }
+
+    if (!accessToken)
+      return {
+        error: 'You have no access rights to this resource'
+      };
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      const response = await fetch(
+        'http://localhost:8090/cash36/exchange/buy/for/',
+        {
+          method: 'POST',
+          body: JSON.stringify(walletfreeData),
           headers: config.headers
         }
       );

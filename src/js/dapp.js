@@ -255,6 +255,7 @@ App = {
     }
 
     const pingInstance = await App.contracts.Ping.deployed();
+    $('#targetContract')[0].innerHTML = pingInstance.address;
     const cBalanceChf36 = await chf36.balanceOf(pingInstance.address);
     const cBeneficiary = await pingInstance.beneficiary();
     $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
@@ -294,13 +295,11 @@ App = {
     });
 
     $('#btn-walletfree').on('click', async () => {
-      console.log('clicked ');
       const username = Kyc.getWalletfreeUserId();
       const password = Kyc.getWalletfreePassword();
       const amount = Kyc.getWalletfreeAmount();
       const symbol = 'CHF36';
       const targetAddressType = 'CONTRACT';
-      const targetAddress = 'ping addresss';
 
       const walletfreeData = {
         amount,
@@ -309,9 +308,20 @@ App = {
         targetAddress: pingInstance.address
       };
 
-      console.log('================================================');
-      console.log(walletfreeData);
-      console.log('================================================');
+      const data = await Kyc.walletfreePing(username, password, walletfreeData);
+
+      if (data.error) {
+        $(
+          '#walletfree-ping-response'
+        )[0].innerHTML = `<div>&#9888; ${data.error}</div>`;
+        return;
+      }
+
+      $('#walletfree-ping-response')[0].innerHTML = JSON.stringify(
+        data,
+        undefined,
+        2
+      );
     });
   },
 

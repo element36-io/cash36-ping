@@ -174,6 +174,7 @@
             <input
               class="input"
               placeholder="Element36 Password"
+              type="password"
               name="APIPwd"
               id="APIPwd"
               value=""
@@ -207,7 +208,7 @@
         </div>
       </section>
       <h2>Wallet-free Ping</h2>
-      <section>
+      <section class="reveal-user-info">
         <div class="reveal-user-info__creds paper">
           <h3>Your element36 (and API) Username and Password</h3>
           <div class="reveal-user-info__creds__inputs">
@@ -221,6 +222,7 @@
             <input
               class="input"
               placeholder="Element36 Password"
+              type="password"
               name="WalletfreePwd"
               id="WalletfreePwd"
               value=""
@@ -233,6 +235,14 @@
               id="WalletfreeAmount"
               value=""
             />
+            <div class="smart-contracts__field">
+              <div class="smart-contracts__field__label">
+                Target Contract (Ping)
+              </div>
+              <div id="targetContract" class="smart-contracts__field__value">
+                ...checking
+              </div>
+            </div>
             <button
               type="button"
               class="button button-full"
@@ -240,6 +250,11 @@
             >
               Send funds to Ping contract
             </button>
+          </div>
+        </div>
+        <div class="reveal-user-info__data">
+          <div id="walletfree-ping-response">
+            After receiving a payment, you are able to see the payment data...
           </div>
         </div>
       </section>
