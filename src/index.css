@@ -214,6 +214,10 @@ h3 {
   margin-right: 16px;
 }
 
+.btn-refresh {
+  margin-top: 16px;
+}
+
 .smart-contracts__contract > input {
   width: 100%;
 }
