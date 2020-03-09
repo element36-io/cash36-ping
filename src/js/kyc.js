@@ -8,6 +8,15 @@ Kyc = {
   getClue: function() {
     return $('#clue')[0].value;
   },
+  getWalletfreeUserId: function() {
+    return $('#WalletfreeId')[0].value;
+  },
+  getWalletfreePassword: function() {
+    return $('#WalletfreePwd')[0].value;
+  },
+  getWalletfreeAmount: function() {
+    return $('#WalletfreeAmount')[0].value;
+  },
   getBaseUrl: function() {
     return 'http://localhost:8089';
   },
@@ -70,6 +79,7 @@ Kyc = {
       };
     }
   }
+
   // Kyc Controller
 
   // GET
@@ -82,7 +92,6 @@ Kyc = {
 }; //Kyc
 $(function() {
   $(window).load(function() {
-
     Kyc.init();
   });
 });

@@ -50,7 +50,6 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider(
         $('#providerUrl')[0].value
       );
-
     }
     return App.initContract();
   },
@@ -119,7 +118,6 @@ App = {
   },
 
   bindEvents: function() {
-
     $(document).on('click', '.btn-ping', App.handlePing2);
     $(document).on('click', '.btn-pong', App.handlePong);
     $(document).on('click', '.btn-refresh', App.updateUserData);
@@ -131,7 +129,6 @@ App = {
   },
 
   handlePing: async function(event) {
-
     if (event) event.preventDefault();
 
     const pingInstance = await App.contracts.Ping.deployed();
@@ -157,12 +154,11 @@ App = {
     let pingInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
-
       if (error) {
         console.log(error);
       }
 
-    App.contracts.Ping.deployed()
+      App.contracts.Ping.deployed()
         .then(function(instance) {
           pingInstance = instance;
           // Execute adopt as a transaction by sending account
@@ -270,8 +266,6 @@ App = {
       const password = Kyc.getAPIPassword();
       const clue = Kyc.getClue();
 
-      console.log(username, password, clue);
-
       const data = await Kyc.revealData(username, password, clue);
 
       if (data.error) {
@@ -279,7 +273,6 @@ App = {
         return;
       }
 
-      console.log(data);
       $('#reveal')[0].innerHTML = `
       <div class="reveal__data">
         <div class="smart-contracts__field__label">Username</div>
@@ -298,6 +291,27 @@ App = {
       </div>
     </div>
       `;
+    });
+
+    $('#btn-walletfree').on('click', async () => {
+      console.log('clicked ');
+      const username = Kyc.getWalletfreeUserId();
+      const password = Kyc.getWalletfreePassword();
+      const amount = Kyc.getWalletfreeAmount();
+      const symbol = 'CHF36';
+      const targetAddressType = 'CONTRACT';
+      const targetAddress = 'ping addresss';
+
+      const walletfreeData = {
+        amount,
+        symbol,
+        targetAddressType,
+        targetAddress: pingInstance.address
+      };
+
+      console.log('================================================');
+      console.log(walletfreeData);
+      console.log('================================================');
     });
   },
 
@@ -335,7 +349,6 @@ App = {
 }; //App
 $(function() {
   $(window).load(function() {
-
     App.init();
   });
 });

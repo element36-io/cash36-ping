@@ -238,6 +238,7 @@ h3 {
 .reveal-user-info {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 24px;
 }
 
 .reveal-user-info__creds {
