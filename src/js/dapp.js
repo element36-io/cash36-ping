@@ -317,11 +317,16 @@ App = {
         return;
       }
 
-      $('#walletfree-ping-response')[0].innerHTML = JSON.stringify(
-        data,
-        undefined,
-        2
-      );
+      console.log(data);
+
+      $('#walletfree-ping-response')[0].innerHTML = Object.keys(data)
+        .map(key => {
+          return `<div class="walletfree__data">
+              <div class="smart-contracts__field__label">${key}</div>
+              <div class="smart-contracts__field__value">${data[key]}</div>
+            </div>`;
+        })
+        .join(' ');
     });
   },
 
