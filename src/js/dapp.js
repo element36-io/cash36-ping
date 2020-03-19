@@ -27,6 +27,7 @@ App = {
     // Modern dapp browsers...
     if (window.ethereum) {
       console.log('.. Metamask or similar provides web3 ');
+
       App.web3Provider = window.ethereum;
       try {
         // Request account access - opens MetaMask
@@ -201,12 +202,14 @@ App = {
     $('#chf36__contractAddress')[0].innerHTML = '...';
 
     // MILOS... how can we call this after init? Could not figure out how
+
     // to do this without a break in case of a pageload - my javascript is too rusty
     await new Promise(r => setTimeout(r, 2000));
 
     //get eth
     web3 = new Web3(App.web3Provider);
     App.account = web3.eth.accounts[0];
+
     $('#account')[0].innerHTML = App.account;
 
     web3.eth.getBalance(App.account, (err, balance) => {
@@ -252,6 +255,7 @@ App = {
     }
 
     const pingInstance = await App.contracts.Ping.deployed();
+    $('#targetContract')[0].innerHTML = pingInstance.address;
     const cBalanceChf36 = await chf36.balanceOf(pingInstance.address);
     const cBeneficiary = await pingInstance.beneficiary();
     $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
@@ -263,8 +267,6 @@ App = {
       const password = Kyc.getAPIPassword();
       const clue = Kyc.getClue();
 
-      console.log(username, password, clue);
-
       const data = await Kyc.revealData(username, password, clue);
 
       if (data.error) {
@@ -272,7 +274,6 @@ App = {
         return;
       }
 
-      console.log(data);
       $('#reveal')[0].innerHTML = `
       <div class="reveal__data">
         <div class="smart-contracts__field__label">Username</div>
@@ -291,6 +292,41 @@ App = {
       </div>
     </div>
       `;
+    });
+
+    $('#btn-walletfree').on('click', async () => {
+      const username = Kyc.getWalletfreeUserId();
+      const password = Kyc.getWalletfreePassword();
+      const amount = Kyc.getWalletfreeAmount();
+      const symbol = 'CHF36';
+      const targetAddressType = 'CONTRACT';
+
+      const walletfreeData = {
+        amount,
+        symbol,
+        targetAddressType,
+        targetAddress: pingInstance.address
+      };
+
+      const data = await Kyc.walletfreePing(username, password, walletfreeData);
+
+      if (data.error) {
+        $(
+          '#walletfree-ping-response'
+        )[0].innerHTML = `<div>&#9888; ${data.error}</div>`;
+        return;
+      }
+
+      console.log(data);
+
+      $('#walletfree-ping-response')[0].innerHTML = Object.keys(data)
+        .map(key => {
+          return `<div class="walletfree__data">
+              <div class="smart-contracts__field__label">${key}</div>
+              <div class="smart-contracts__field__value">${data[key]}</div>
+            </div>`;
+        })
+        .join(' ');
     });
   },
 

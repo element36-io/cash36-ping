@@ -56,13 +56,33 @@
             PONG
           </button>
         </div>
+        <div class="smart-contracts__contract paper">
+          <h3>CHF36 Contract status</h3>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Contract Address</div>
+            <div
+              id="chf36__contractAddress"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">CHF36 Balance</div>
+            <div
+              id="chf36balance__contract"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
+          <button type="button" class="btn-refresh button button-full">
+            Refresh contracts
+          </button>
+        </div>
       </section>
-      <div class="smart-contracts__header">
-        <h2>State of smart contracts</h2>
-        <button type="button" class="btn-refresh button button-full">
-          Refresh contracts
-        </button>
-      </div>
+
+      <h2>State of smart contracts</h2>
 
       <section class="smart-contracts">
         <div class="smart-contracts__contract paper">
@@ -138,27 +158,6 @@
             </div>
           </div>
         </div>
-        <div class="smart-contracts__contract paper">
-          <h3>CHF36 Contract status</h3>
-          <div class="smart-contracts__field">
-            <div class="smart-contracts__field__label">Contract Address</div>
-            <div
-              id="chf36__contractAddress"
-              class="smart-contracts__field__value"
-            >
-              ...checking
-            </div>
-          </div>
-          <div class="smart-contracts__field">
-            <div class="smart-contracts__field__label">CHF36 Balance</div>
-            <div
-              id="chf36balance__contract"
-              class="smart-contracts__field__value"
-            >
-              ...checking
-            </div>
-          </div>
-        </div>
       </section>
       <h2>API call to reveal user info</h2>
       <section class="reveal-user-info">
@@ -175,6 +174,7 @@
             <input
               class="input"
               placeholder="Element36 Password"
+              type="password"
               name="APIPwd"
               id="APIPwd"
               value=""
@@ -204,6 +204,57 @@
           <div id="reveal">
             After receiving a payment, you are able to reveal identitiy
             (customer) data...
+          </div>
+        </div>
+      </section>
+      <h2>Wallet-free Ping</h2>
+      <section class="reveal-user-info">
+        <div class="reveal-user-info__creds paper">
+          <h3>Your element36 (and API) Username and Password</h3>
+          <div class="reveal-user-info__creds__inputs">
+            <input
+              class="input"
+              placeholder="Element36 Username"
+              name="WalletfreeId"
+              id="WalletfreeId"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Element36 Password"
+              type="password"
+              name="WalletfreePwd"
+              id="WalletfreePwd"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Amount to Send"
+              type="number"
+              name="WalletfreeAmount"
+              id="WalletfreeAmount"
+              value=""
+            />
+            <div class="smart-contracts__field">
+              <div class="smart-contracts__field__label">
+                Target Contract (Ping)
+              </div>
+              <div id="targetContract" class="smart-contracts__field__value">
+                ...checking
+              </div>
+            </div>
+            <button
+              type="button"
+              class="button button-full"
+              id="btn-walletfree"
+            >
+              Send funds to Ping contract
+            </button>
+          </div>
+        </div>
+        <div class="reveal-user-info__data">
+          <div id="walletfree-ping-response">
+            After receiving a payment, you are able to see the payment data...
           </div>
         </div>
       </section>
