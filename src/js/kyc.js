@@ -14,6 +14,9 @@ Kyc = {
   getWalletfreePassword: function() {
     return $('#WalletfreePwd')[0].value;
   },
+  getTargetContract: function() {
+    return $('#targetContract')[0].value;
+  },
   getWalletfreeAmount: function() {
     return $('#WalletfreeAmount')[0].value;
   },

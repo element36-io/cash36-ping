@@ -255,7 +255,7 @@ App = {
     }
 
     const pingInstance = await App.contracts.Ping.deployed();
-    $('#targetContract')[0].innerHTML = pingInstance.address;
+    $('#targetContract')[0].defaultValue = pingInstance.address;
     const cBalanceChf36 = await chf36.balanceOf(pingInstance.address);
     const cBeneficiary = await pingInstance.beneficiary();
     $('#chf36balance__contract')[0].innerHTML = App.parse(cBalanceChf36);
@@ -298,6 +298,7 @@ App = {
       const username = Kyc.getWalletfreeUserId();
       const password = Kyc.getWalletfreePassword();
       const amount = Kyc.getWalletfreeAmount();
+      const targetAddress = Kyc.getTargetContract();
       const symbol = 'CHF36';
       const targetAddressType = 'CONTRACT';
 
@@ -305,7 +306,7 @@ App = {
         amount,
         symbol,
         targetAddressType,
-        targetAddress: pingInstance.address
+        targetAddress
       };
 
       const data = await Kyc.walletfreePing(username, password, walletfreeData);
