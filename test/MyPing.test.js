@@ -1,3 +1,4 @@
+
 /**
  * Contains all Test specific for CHF36
  * see https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
