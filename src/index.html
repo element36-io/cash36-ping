@@ -1,60 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>ERC20 Ping-Pong</title>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/dapp.js"></script>
-    <script src="js/kyc.js"></script>
-    
-    <style > 
-      button {width:100px;margin:3px;}
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1 >Ping-Pong with Fiat on ethereum</h1>
-    <h3 >All transactions work within a KYC-ed environment at all times!</h3>
-    <p>Basic template for a Dapp, how to integrate CHF (Swiss Francs) into Smart Contracts. 
-      This contracts sends funds from a Person to a contract which can be retrieved later by a defined Person. 
-      The wallets must be part of the KYCnetwork.io - transactions and wallets are monitored - its only works, 
-      as long participating persons are fully KYC-ed. 
-    </p>
-    <br/>
-    <br/>
-    
-    <button type="button" class="btn-ping" >PING</button>Send  <input name="amount" id="amount"  value="1" style="width:30px;"> CHF36 to the Contract for the beneficiary <br/>
-    <button type="button" class="btn-pong" >PONG</button>Beneficiary withdraws funds from the contract <br/>
-    <br/>
-    <br/>
-    <h2>State of smart contracts  </h2>
+    <header class="header">
+      <div class="header__content">
+        <h1>Ping-Pong with Fiat on ethereum</h1>
+      </div>
+    </header>
+    <div class="container">
+      <section class="hero">
+        <h2 class="hero__title">
+          All transactions work within a KYC-ed environment at all times!
+        </h2>
+        <p class="hero__paragraph">
+          Basic template for a Dapp, how to integrate CHF (Swiss Francs) into
+          Smart Contracts. This contract sends funds from a
+          <strong>Person</strong> to a <strong>Contract</strong> which can be
+          retrieved later by a defined Person. The wallets must be part of the
+          KYCnetwork.io - transactions and wallets are monitored - its only
+          works, as long participating persons are
+          <strong>fully KYC-ed</strong>.
+        </p>
+      </section>
 
-    Wallet-address (e.g. from Metamask): <span id="account">...checking</span>, balance <span id="balanceEth">...checking</span> <br/> 
-    <span id="balance36">...checking</span> <br/>
-    <br/>
-    Beneficiary wallet address: <input name="beneficiary" id="beneficiary"  value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e" style="width:400px"> <br/>
+      <section class="ping-pong">
+        <div class="ping-pong__section paper">
+          <h3>Ping</h3>
+          <div>
+            Send the desired amount of CHF36 to the Contract of the beneficiary
+          </div>
+          <input
+            name="amount"
+            id="amount"
+            placeholder="Amount of CHF36 to Send"
+            class="input"
+            type="number"
+          />
+          <button type="button" class="btn-ping button button-full">
+            PING
+          </button>
+        </div>
+        <div class="ping-pong__section paper">
+          <h3>Pong</h3>
+          <div>
+            Beneficiary withdraws funds from the contract
+          </div>
+          <button type="button" class="btn-pong button button-full">
+            PONG
+          </button>
+        </div>
+        <div class="smart-contracts__contract paper">
+          <h3>CHF36 Contract status</h3>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Contract Address</div>
+            <div
+              id="chf36__contractAddress"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">CHF36 Balance</div>
+            <div
+              id="chf36balance__contract"
+              class="smart-contracts__field__value"
+            >
+              ...checking
+            </div>
+          </div>
+          <button type="button" class="btn-refresh button button-full">
+            Refresh contracts
+          </button>
+        </div>
+      </section>
 
-    <span id="beneficiaryBalance36">...checking</span> <br/>
-    <br/>
-    Contract: <span id="contractBalance36">...checking</span> <br/>
+      <h2>State of smart contracts</h2>
 
-    <br>   
-    <button type="button" class="btn-refresh"  >refresh</button> Refresh state information
-    <br/>
-    <br/>
-  
+      <section class="smart-contracts">
+        <div class="smart-contracts__contract paper">
+          <h3>Wallet-address (e.g. from Metamask):</h3>
 
-    <h2>API call to reveal user info</h2> 
-    Your e36 (and API) user/pwd <input name="APIId" id="APIId"  value="" style="width:300px">/<input name="APIPwd" id="APIPwd"  value="" style="width:200px"> 
-    <br/>
-    The clue: <input name="clue" id="clue"  value="" style="width:200px"> Beneficiary address or transaction hash in case of wallet-free submission
-    <br/>
-    <button type="button" class="btn-reveal" >reveal data</button>After receiving a payment, you are able to reveal identitiy (customer) data.<br/>
-    <span id="reveal">...</span> <br/>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Contract address</div>
+            <div id="account" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
 
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Ethereum balance</div>
+            <div id="balanceEth" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">CHF36 Balance</div>
+            <div id="chf36balance" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">Is sender KYC-ed?</div>
+            <div id="senderKycd" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is sender allowed to Send funds?
+            </div>
+            <div id="allowedSend" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+        </div>
+        <div class="smart-contracts__contract paper">
+          <h3>Beneficiary wallet address:</h3>
+          <input
+            name="beneficiary"
+            id="beneficiary"
+            class="input"
+            value="0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e"
+          />
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary KYC-ed?
+            </div>
+            <div id="beneficiaryKycd" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary allowed to Buy funds?
+            </div>
+            <div id="allowedBuy" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+          <div class="smart-contracts__field">
+            <div class="smart-contracts__field__label">
+              Is beneficiary allowed to Receive funds?
+            </div>
+            <div id="allowedReceive" class="smart-contracts__field__value">
+              ...checking
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2>API call to reveal user info</h2>
+      <section class="reveal-user-info">
+        <div class="reveal-user-info__creds paper">
+          <h3>Your element36 (and API) Username and Password</h3>
+          <div class="reveal-user-info__creds__inputs">
+            <input
+              class="input"
+              placeholder="Element36 Username"
+              name="APIId"
+              id="APIId"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Element36 Password"
+              type="password"
+              name="APIPwd"
+              id="APIPwd"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Clue*"
+              name="clue"
+              id="clue"
+              value=""
+            />
+            <span class="reveal-user-info__clue-explain">
+              * Clue can be beneficiary address or transaction hash in case of a
+              wallet-free submission
+            </span>
+            <button
+              type="button"
+              class="btn-reveal button button-full"
+              id="btn-reveal"
+            >
+              reveal data
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal-user-info__data">
+          <div id="reveal">
+            After receiving a payment, you are able to reveal identitiy
+            (customer) data...
+          </div>
+        </div>
+      </section>
+      <h2>Wallet-free Ping</h2>
+      <section class="reveal-user-info">
+        <div class="reveal-user-info__creds paper">
+          <h3>Your element36 (and API) Username and Password</h3>
+          <div class="reveal-user-info__creds__inputs">
+            <input
+              class="input"
+              placeholder="Element36 Username"
+              name="WalletfreeId"
+              id="WalletfreeId"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Element36 Password"
+              type="password"
+              name="WalletfreePwd"
+              id="WalletfreePwd"
+              value=""
+            />
+            <input
+              class="input"
+              placeholder="Amount to Send"
+              type="number"
+              name="WalletfreeAmount"
+              id="WalletfreeAmount"
+              value=""
+            />
+            <div class="smart-contracts__field">
+              <div class="smart-contracts__field__label">
+                Target Contract (Ping)
+              </div>
+              <input
+                id="targetContract"
+                class="input"
+                placeholder="Target Contract"
+                type="text"
+                name="targetContract"
+              />
+            </div>
+            <button
+              type="button"
+              class="button button-full"
+              id="btn-walletfree"
+            >
+              Send funds to Ping contract
+            </button>
+          </div>
+        </div>
+        <div class="reveal-user-info__data">
+          <div id="walletfree-ping-response">
+            After receiving a payment, you are able to see the payment data...
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/dapp.js"></script>
+  <script src="js/kyc.js"></script>
 </html>
