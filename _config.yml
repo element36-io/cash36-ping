@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: [Welcome!]
+description: [This is a demo contract which uses cash36.io tokens and its API to reaveal identity of a wallet-holder.]
+logo: https://cash36.io/static/media/Logo.dfca0c00.svg
