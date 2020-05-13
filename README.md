@@ -1,5 +1,7 @@
 To try this example locally, do: 
 
+Try the contract [here](./src/index.html)
+
 ```
 truffle build
 npm truffle migrate
