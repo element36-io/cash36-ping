@@ -1,6 +1,5 @@
 
-Try the contract (Dapp) online [here](./src/index.html). 
-
+Try the contract (Dapp) online [here](https://element36-io.github.io/cash36-ping/). 
 To try this example locally, do: 
 
 ```
